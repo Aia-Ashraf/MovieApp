@@ -8,12 +8,16 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -76,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
 
                             list = response.body().getMovies();
                             movieAdapter.setMovieList(list);
+
+
                         }else {
 
                             Toast.makeText(MainActivity.this, R.string.error,Toast.LENGTH_LONG);
@@ -90,5 +96,24 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        menu.findItem(R.id.back).setVisible(false);
+
+        return true;    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.SortBy){
+            Collections.sort(list,Movie.Sort_BY_Rate);
+
+        }
+        movieAdapter.setMovieList(list);
+
+
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -3,7 +3,9 @@ package com.example.aiaa.movieapp1;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
+import java.util.Comparator;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -98,6 +100,15 @@ public class Movie implements Parcelable {
             return new Movie[size];
         }
     };
+
+    public static final Comparator<Movie> Sort_BY_Rate = new Comparator<Movie>() {
+
+        @Override
+        public int compare(Movie o1, Movie o2) {
+            return o1.popularity.compareTo(o2.popularity);
+        }
+    };
+
 
     public Integer getVoteCount() {
         return voteCount;

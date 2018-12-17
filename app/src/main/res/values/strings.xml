@@ -3,4 +3,6 @@
     <string name="error">Error</string>
     <string name="API_key"></string>
     <string name="title">title</string>
+    <string name="sort_by">Sort by popular</string>
+    <string name="rate">rate</string>
 </resources>

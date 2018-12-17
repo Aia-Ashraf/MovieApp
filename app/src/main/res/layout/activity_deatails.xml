@@ -63,11 +63,16 @@
 
         <TextView
             android:id="@+id/tv_details"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="88dp"
             android:textColor="#000000 "
             android:textStyle="bold"
+            android:adjustViewBounds="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginStart="30dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_iv" />
 

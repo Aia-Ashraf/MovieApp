@@ -51,14 +51,16 @@ public class DeatailsActivity extends AppCompatActivity {
                 .into(imageView);
 
         title.setText(MovieTitle);
-        releaseDate.setText(MovieReleseData);
-        vote.setText(String.valueOf(voteMoview));
-        details.setText(plot);
+        releaseDate.setText("Release Data : "+MovieReleseData);
+        vote.setText( String.valueOf(voteMoview));
+        details.setText( plot);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+        menu.findItem(R.id.SortBy).setVisible(false);
+
         return true;
     }
 

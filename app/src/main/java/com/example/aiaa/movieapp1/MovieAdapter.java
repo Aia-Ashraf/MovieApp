@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
@@ -23,6 +24,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.movieViewHol
     private List<Movie> modelList;
     String firstURLPart = "http://image.tmdb.org/t/p/w185";
     private Context context;
+
+
 
 
     public Movie mPosition;
@@ -49,6 +52,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.movieViewHol
     @Override
     public void onBindViewHolder(final movieViewHolder movieViewHolder, int position) {
         final Movie mPosition = modelList.get(position);
+        Double voteMoview = mPosition.getVoteAverage();
+
+
 
 
         if (mPosition.getPosterPath() != null) {
@@ -58,6 +64,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.movieViewHol
                     .centerCrop()
                     .placeholder(R.drawable.scope_placeholder)
                     .into(movieViewHolder.img);
+            movieViewHolder.titleMain.setText(mPosition.getTitle());
+            movieViewHolder.rate.setText(String.valueOf(voteMoview));
+
         }
         movieViewHolder.img.setOnClickListener(new View.OnClickListener() {
 
@@ -65,7 +74,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.movieViewHol
             @Override
             public void onClick(View v) {
                 if (mPosition.getPosterPath() != null) {
-                    Toast.makeText(context, "clicked", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(context, DeatailsActivity.class)
 
                                 .putExtra("parcelable_extra", (Parcelable) mPosition);
@@ -74,6 +82,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.movieViewHol
                 }
             }
         });
+
+
 
         Log.e("p",position+ "");
     }
@@ -93,10 +103,17 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.movieViewHol
 
     static class movieViewHolder extends RecyclerView.ViewHolder {
         public ImageView img;
+        public TextView titleMain;
+        public TextView rate;
 
         public movieViewHolder(View itemView) {
             super(itemView);
             img = (ImageView) itemView.findViewById(R.id.iv_item);
+            titleMain= (TextView)itemView.findViewById(R.id.tv_main_title);
+            rate =(TextView)itemView.findViewById(R.id.tv_main_rate);
+
+
+
 
         }
     }

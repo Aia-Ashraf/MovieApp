@@ -8,4 +8,10 @@
         app:showAsAction="ifRoom"
         android:id="@+id/back">
     </item>
+    <item android:title="@string/sort_by"
+        android:id="@+id/SortBy"
+        android:orderInCategory="2"
+
+
+        ></item>
 </menu>
