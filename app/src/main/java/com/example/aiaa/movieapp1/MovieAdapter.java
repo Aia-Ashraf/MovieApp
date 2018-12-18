@@ -56,7 +56,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.movieViewHol
 
 
 
-
         if (mPosition.getPosterPath() != null) {
             Picasso.get().load(firstURLPart + mPosition.getPosterPath())
 

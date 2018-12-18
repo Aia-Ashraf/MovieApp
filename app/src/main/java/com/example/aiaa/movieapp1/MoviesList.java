@@ -1,4 +1,3 @@
-
 package com.example.aiaa.movieapp1;
 
 import java.util.List;
