@@ -100,7 +100,7 @@ public class Movie implements Parcelable {
         }
     };
 
-    public static final Comparator<Movie> Sort_BY_Rate = new Comparator<Movie>() {
+ /*   public static final Comparator<Movie> Sort_BY_Rate = new Comparator<Movie>() {
 
         @Override
         public int compare(Movie o1, Movie o2) {
@@ -108,7 +108,7 @@ public class Movie implements Parcelable {
         }
     };
 
-
+*/
     public Integer getVoteCount() {
         return voteCount;
     }

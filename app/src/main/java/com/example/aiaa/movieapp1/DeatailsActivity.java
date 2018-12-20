@@ -59,7 +59,8 @@ public class DeatailsActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
-        menu.findItem(R.id.SortBy).setVisible(false);
+        menu.findItem(R.id.Top_Rated).setVisible(false);
+        menu.findItem(R.id.Popularty).setVisible(false);
 
         return true;
     }

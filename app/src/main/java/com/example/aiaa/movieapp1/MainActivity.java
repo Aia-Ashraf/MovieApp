@@ -49,10 +49,10 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
 
-    //    LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        //    LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         int numberOfColumns = 2;
         recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
-       // recyclerView.setLayoutManager(layoutManager);
+        // recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
         getRetrofitResponse();
@@ -80,22 +80,47 @@ public class MainActivity extends AppCompatActivity {
 
                             list = response.body().getMovies();
                             movieAdapter.setMovieList(list);
+                        } else {
 
-
-                        }else {
-
-                            Toast.makeText(MainActivity.this, R.string.error,Toast.LENGTH_LONG);
+                            Toast.makeText(MainActivity.this, R.string.error, Toast.LENGTH_LONG);
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
+
                 @Override
                 public void onFailure(Call<MoviesList> call, Throwable t) {
-                    Toast.makeText(MainActivity.this,R.string.error,Toast.LENGTH_LONG);
+                    Toast.makeText(MainActivity.this, R.string.error, Toast.LENGTH_LONG);
                 }
             });
         }
+    }
+
+    public void getTopRatedRetrofitResponse() {
+
+        retrofit.create(ApiInterface.TopRated.class).getTopRated(getString(R.string.API_key)).enqueue(new Callback<MoviesList>() {
+            @Override
+            public void onResponse(Call<MoviesList> call, Response<MoviesList> response) {
+                try {
+                    if (response.code() == 200) {
+                        list = response.body().getMovies();
+                        movieAdapter.setMovieList(list);
+                    } else {
+                        Toast.makeText(MainActivity.this, R.string.error, Toast.LENGTH_LONG);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MoviesList> call, Throwable t) {
+                Toast.makeText(MainActivity.this, R.string.error, Toast.LENGTH_LONG);
+
+            }
+        });
     }
 
     @Override
@@ -103,17 +128,29 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main, menu);
         menu.findItem(R.id.back).setVisible(false);
 
-        return true;    }
+        return true;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.SortBy){
-            Collections.sort(list,Movie.Sort_BY_Rate);
+        if (item.getItemId() == R.id.Top_Rated) {
+            //   Collections.sort(list,Movie.Sort_BY_Rate);
+            setTitle(R.string.Top_Rated);
+            getTopRatedRetrofitResponse();
+            movieAdapter = new MovieAdapter(this, list);
+            recyclerView.setAdapter(movieAdapter);
+            list = new ArrayList<>();
+            movieAdapter.setMovieList(list);
+
+        } else if (item.getItemId() == R.id.Popularty) {
+            setTitle(R.string.app_name);
+            getRetrofitResponse();
+            movieAdapter = new MovieAdapter(this, list);
+            recyclerView.setAdapter(movieAdapter);
+            list = new ArrayList();
+            movieAdapter.setMovieList(list);
 
         }
-        movieAdapter.setMovieList(list);
-
-
         return super.onOptionsItemSelected(item);
     }
 }

@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">MovieApp</string>
+    <string name="app_name">Popular Movies</string>
+    <string name="top_rated">Top Rated Movies</string>
     <string name="error">Error</string>
     <string name="API_key"></string>
     <string name="title">title</string>
-    <string name="sort_by">Sort by popular</string>
+    <string name="Top_Rated">Sort By Top Rated</string>
+    <string name="Popular">Sort By Popularty</string>
     <string name="rate">rate</string>
 </resources>

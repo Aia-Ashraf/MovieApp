@@ -9,4 +9,10 @@ public interface ApiInterface {
 
     @GET("3/movie/popular")
     Call<MoviesList>Data(@Query("api_key")String api_key);
+
+    public interface TopRated{
+        @GET("3/movie/top_rated")
+        Call<MoviesList>getTopRated(@Query("api_key")String api_key);
+
+    }
 }
