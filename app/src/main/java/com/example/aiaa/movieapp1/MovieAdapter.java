@@ -2,22 +2,24 @@ package com.example.aiaa.movieapp1;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcel;
+import android.content.SharedPreferences;
 import android.os.Parcelable;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.squareup.picasso.Picasso;
 
-
 import java.util.List;
 
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.movieViewHolder> {
@@ -25,11 +27,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.movieViewHol
     String firstURLPart = "http://image.tmdb.org/t/p/w185";
     private Context context;
 
-
-
-
     public Movie mPosition;
 
+    public MainActivity mainActivity;
+    Movie movie;
 
 
     public MovieAdapter(Context context, List<Movie> modelList) {
@@ -54,8 +55,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.movieViewHol
         final Movie mPosition = modelList.get(position);
         Double voteMoview = mPosition.getVoteAverage();
 
-
-
         if (mPosition.getPosterPath() != null) {
             Picasso.get().load(firstURLPart + mPosition.getPosterPath())
 
@@ -74,17 +73,18 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.movieViewHol
             public void onClick(View v) {
                 if (mPosition.getPosterPath() != null) {
                     Intent intent = new Intent(context, DeatailsActivity.class)
-
-                                .putExtra("parcelable_extra", (Parcelable) mPosition);
+                            .putExtra("parcelable_extra", (Parcelable) mPosition);
                     context.startActivity(intent);
 
                 }
+
             }
         });
 
+        Log.e("p", position + "");
 
 
-        Log.e("p",position+ "");
+
     }
 
     @Override
@@ -105,14 +105,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.movieViewHol
         public TextView titleMain;
         public TextView rate;
 
+
         public movieViewHolder(View itemView) {
             super(itemView);
             img = (ImageView) itemView.findViewById(R.id.iv_item);
-            titleMain= (TextView)itemView.findViewById(R.id.tv_main_title);
-            rate =(TextView)itemView.findViewById(R.id.tv_main_rate);
-
-
-
+            titleMain = (TextView) itemView.findViewById(R.id.tv_main_title);
+            rate = (TextView) itemView.findViewById(R.id.tv_main_rate);
 
         }
     }

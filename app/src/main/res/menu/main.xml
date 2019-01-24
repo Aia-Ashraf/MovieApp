@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
     <item
+        android:id="@+id/back"
         android:icon="?attr/homeAsUpIndicator"
+        android:orderInCategory="2"
         android:title="back"
-        android:orderInCategory="1"
-        app:showAsAction="ifRoom"
-        android:id="@+id/back">
-    </item>
-    <item android:title="@string/Top_Rated"
+        app:showAsAction="ifRoom"></item>
+    <item
         android:id="@+id/Top_Rated"
         android:orderInCategory="2"
+        android:title="@string/Top_Rated"
 
 
         ></item>
-    <item android:title="@string/Popular"
+    <item
         android:id="@+id/Popularty"
         android:orderInCategory="3"
+        android:title="@string/Popular"></item>
 
-
-        ></item>
 </menu>

@@ -2,59 +2,82 @@ package com.example.aiaa.movieapp1;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
 
-import java.util.Comparator;
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "Movie")
 public class Movie implements Parcelable {
 
     @SerializedName("vote_count")
     @Expose
-    private Integer voteCount;
+    public Integer voteCount;
+
     @SerializedName("id")
     @Expose
-    private Integer id;
+    public Integer id;
+
     @SerializedName("video")
     @Expose
-    private Boolean video;
+    public Boolean video;
     @SerializedName("vote_average")
     @Expose
-    private Double voteAverage;
+    public Double voteAverage;
     @SerializedName("title")
     @Expose
-    private String title;
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "title")
+
+    public String title;
     @SerializedName("popularity")
     @Expose
-    private Double popularity;
+    public Double popularity;
     @SerializedName("poster_path")
     @Expose
-    private String posterPath;
+    public String posterPath;
     @SerializedName("original_language")
     @Expose
-    private String originalLanguage;
+    public String originalLanguage;
     @SerializedName("original_title")
     @Expose
-    private String originalTitle;
-    @SerializedName("genre_ids")
+    public String originalTitle;
+
+    public boolean fav;
+
+
+
+   /* @SerializedName("genre_ids")
     @Expose
-    private List<Integer> genreIds = null;
+    private List<Integer> genreIds = null;*/
+
+
     @SerializedName("backdrop_path")
     @Expose
-    private String backdropPath;
+    public String backdropPath;
     @SerializedName("adult")
     @Expose
-    private Boolean adult;
+    public Boolean adult;
     @SerializedName("overview")
     @Expose
-    private String overview;
+    public String overview;
     @SerializedName("release_date")
     @Expose
-    private String releaseDate;
+    public String releaseDate;
 
-    protected Movie(Parcel in) {
+
+    public Movie(Integer id) {
+        this.id = id;
+    }
+
+    @Ignore
+    public Movie(Parcel in) {
         if (in.readByte() == 0) {
             voteCount = null;
         } else {
@@ -88,6 +111,7 @@ public class Movie implements Parcelable {
         releaseDate = in.readString();
     }
 
+    @Ignore
     public static final Creator<Movie> CREATOR = new Creator<Movie>() {
         @Override
         public Movie createFromParcel(Parcel in) {
@@ -100,15 +124,6 @@ public class Movie implements Parcelable {
         }
     };
 
- /*   public static final Comparator<Movie> Sort_BY_Rate = new Comparator<Movie>() {
-
-        @Override
-        public int compare(Movie o1, Movie o2) {
-            return o1.popularity.compareTo(o2.popularity);
-        }
-    };
-
-*/
     public Integer getVoteCount() {
         return voteCount;
     }
@@ -132,6 +147,15 @@ public class Movie implements Parcelable {
     public void setVideo(Boolean video) {
         this.video = video;
     }
+
+    public Boolean getFav() {
+        return fav;
+    }
+
+    public void setFav(Boolean fav) {
+        this.fav = fav;
+    }
+
 
     public Double getVoteAverage() {
         return voteAverage;
@@ -181,13 +205,17 @@ public class Movie implements Parcelable {
         this.originalTitle = originalTitle;
     }
 
-    public List<Integer> getGenreIds() {
+
+
+  /*  public List<Integer> getGenreIds() {
         return genreIds;
     }
 
     public void setGenreIds(List<Integer> genreIds) {
         this.genreIds = genreIds;
     }
+*/
+
 
     public String getBackdropPath() {
         return backdropPath;

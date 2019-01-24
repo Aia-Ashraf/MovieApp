@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class MoviesList {
 
+
     @SerializedName("page")
     @Expose
     private Integer page;
@@ -18,6 +19,7 @@ public class MoviesList {
     @SerializedName("results")
     @Expose
     private List<Movie> movies = null;
+
 
     public Integer getPage() {
         return page;

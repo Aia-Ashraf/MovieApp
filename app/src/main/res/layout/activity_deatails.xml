@@ -6,24 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".DeatailsActivity">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
+<RelativeLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/Rlayout">
 
         <ImageView
             android:id="@+id/image_iv"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="800dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             android:src="@drawable/scope_placeholder"
-            tools:ignore="MissingConstraints"
+            app:layout_constraintBottom_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
             tools:layout_editor_absoluteX="150dp"
-            tools:layout_editor_absoluteY="0dp"
+            tools:layout_editor_absoluteY="100dp"
             android:paddingTop="22dp"/>
 
+        <ToggleButton
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:id="@+id/myToggleButton"
+            android:layout_marginLeft="300dp"
+            android:gravity="top"></ToggleButton>
+</RelativeLayout>
         <TextView
             android:id="@+id/tv_releaseDate"
             android:layout_width="wrap_content"
@@ -34,7 +48,7 @@
             android:textColor="#000000"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_iv" />
+            app:layout_constraintTop_toBottomOf="@+id/Rlayout" />
 
         <TextView
             android:id="@+id/tv_title"
@@ -45,9 +59,9 @@
             android:layout_marginTop="12dp"
             android:textColor="#000000 "
             android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="@id/tv_vote"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_iv" />
-
+            app:layout_constraintTop_toBottomOf="@+id/Rlayout" />
 
         <TextView
             android:id="@+id/tv_vote"
@@ -59,25 +73,64 @@
             android:textColor="	#CCCC00	"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_iv" />
+            app:layout_constraintTop_toBottomOf="@+id/Rlayout" />
 
         <TextView
             android:id="@+id/tv_details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="88dp"
             android:textColor="#000000 "
             android:textStyle="bold"
-            android:adjustViewBounds="true"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="30dp"
             android:layout_marginStart="30dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_iv" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_releaseDate" />
 
 
-    </android.support.constraint.ConstraintLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reviews"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/tv_details"
+            android:id="@+id/tv_reviewsTitle"
+            />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RV_Reviews"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_reviewsTitle"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="16dp"
+            >
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Trailers"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/RV_Reviews"
+            android:id="@+id/tv_trailers"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/vv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_trailers"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginBottom="16dp"
+             >
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
-
-
