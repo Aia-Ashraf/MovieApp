@@ -1,22 +1,17 @@
 package com.example.aiaa.movieapp1;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.CompoundButton;
 import android.widget.Toast;
-import android.widget.ToggleButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,9 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     public FavouritDatabase mDB;
 
-    Movie movie;
-
-    public static final int NEW_DETAILS_ACTIVITY_REQUEST_CODE = 1;
+    //  public static final int NEW_DETAILS_ACTIVITY_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        recyclerView = findViewById(R.id.recyclerview);
 
         //    LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         int numberOfColumns = 2;

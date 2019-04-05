@@ -2,23 +2,19 @@ package com.example.aiaa.movieapp1;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ToggleButton;
+
 
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -28,10 +24,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.movieViewHol
     private Context context;
 
     public Movie mPosition;
-
-    public MainActivity mainActivity;
-    Movie movie;
-
 
     public MovieAdapter(Context context, List<Movie> modelList) {
         this.context = context;
