@@ -7,4 +7,6 @@
     <string name="Top_Rated">Sort By Top Rated</string>
     <string name="Popular">Sort By Popularty</string>
     <string name="rate">rate</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>
