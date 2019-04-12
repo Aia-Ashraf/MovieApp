@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 
 android {
@@ -9,11 +10,13 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
+
 //        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
 
-
     }
+    apply plugin: 'com.google.gms.google-services'
     buildTypes {
         release {
             minifyEnabled false
@@ -38,20 +41,22 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-    compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
-    compile 'com.squareup.retrofit2:converter-scalars:2.3.0'
-    compile 'androidx.recyclerview:recyclerview:1.1.0-alpha01'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.3.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0-alpha01'
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
 
     implementation 'androidx.cardview:cardview:1.0.0'
-    compile 'com.firebase:firebase-jobdispatcher:0.8.5'
-
-
-
+    implementation 'com.firebase:firebase-jobdispatcher:0.8.5'
+    implementation 'com.google.firebase:firebase-core:16.0.8'
+//    compile 'com.google.android.gms:play-services-wearable:16.0.1'
+//    compile 'com.google.android.gms:play-services:12.0.1'
+    compile 'com.google.firebase:firebase-analytics:16.4.0'
+compile 'com.google.firebase:firebase-messaging:17.6.0'
 
 }

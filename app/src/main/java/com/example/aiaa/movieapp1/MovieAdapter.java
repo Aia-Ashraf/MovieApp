@@ -2,6 +2,7 @@ package com.example.aiaa.movieapp1;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -22,6 +24,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.movieViewHol
     private List<Movie> modelList;
     String firstURLPart = "http://image.tmdb.org/t/p/w185";
     private Context context;
+    public FirebaseAnalytics mFirebaseAnalytics;
 
     public Movie mPosition;
 
@@ -46,6 +49,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.movieViewHol
     public void onBindViewHolder(final movieViewHolder movieViewHolder, int position) {
         final Movie mPosition = modelList.get(position);
         Double voteMoview = mPosition.getVoteAverage();
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, mPosition.id.toString());
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+
 
         if (mPosition.getPosterPath() != null) {
             Picasso.get().load(firstURLPart + mPosition.getPosterPath())
