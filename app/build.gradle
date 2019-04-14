@@ -47,7 +47,11 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
     implementation 'androidx.cardview:cardview:1.0.0'
     compile 'com.firebase:firebase-jobdispatcher:0.8.5'
+
+
+
 
 }

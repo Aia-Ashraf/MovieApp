@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "421628360507",
+    "firebase_url": "https://moviejava.firebaseio.com",
+    "project_id": "moviejava",
+    "storage_bucket": "moviejava.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:421628360507:android:f727fa3f70b34067",
+        "android_client_info": {
+          "package_name": "com.example.aiaa.movieapp1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "421628360507-937ur54o8gjh5ki0nhj867o1l9sfb8ma.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD90JgQT6uL-1ykSbqYJyE0v53Y7nmY-Vw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "421628360507-937ur54o8gjh5ki0nhj867o1l9sfb8ma.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

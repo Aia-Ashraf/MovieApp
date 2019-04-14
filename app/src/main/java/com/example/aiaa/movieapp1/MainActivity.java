@@ -15,6 +15,7 @@ import com.firebase.jobdispatcher.Job;
 import com.firebase.jobdispatcher.Lifetime;
 import com.firebase.jobdispatcher.RetryStrategy;
 import com.firebase.jobdispatcher.Trigger;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private MovieAdapter movieAdapter;
-    private Context context;
-
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     public FavouritDatabase mDB;
 
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+// Obtain the FirebaseAnalytics instance.
 
         scheduleJob(this);
 
@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         getRetrofitResponse();
         movieAdapter = new MovieAdapter(this, list);
         recyclerView.setAdapter(movieAdapter);
+        movieAdapter.mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         list = new ArrayList<>();
         movieAdapter.setMovieList(list);
