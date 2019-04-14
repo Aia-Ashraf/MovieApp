@@ -14,14 +14,12 @@ public class MovieAppWidget extends AppWidgetProvider {
                                 int appWidgetId) {
 
         CharSequence widgetText = context.getString(R.string.appwidget_text);
-
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.movie_app_widget);
-        views.setTextViewText(R.id.appwidget_text, widgetText);
-        views.setTextViewText(R.id.appwidget_text2, "22222");
-        views.setTextViewText(R.id.appwidget_text3, "333333333333");
-
-
+        views.setTextViewText(R.id.appwidget_text, "❥  "+"Us");
+        views.setTextViewText(R.id.appwidget_text2,"❥  "+ "Glass");
+        views.setTextViewText(R.id.appwidget_text3, "❥  "+"Cars");
+        views.setTextViewText(R.id.appwidget_text4, "❥  "+"The Mule");
 
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
@@ -45,4 +43,3 @@ public class MovieAppWidget extends AppWidgetProvider {
         // Enter relevant functionality for when the last widget is disabled
     }
 }
-
