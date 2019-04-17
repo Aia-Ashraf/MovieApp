@@ -12,11 +12,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
@@ -106,6 +112,7 @@ public class DeatailsActivity extends AppCompatActivity {
             toggleButton.setChecked(false);
             toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.disable));
             Log.e("Fav", "inserted" + mDB);
+
             // favviewmodel.insert(movie);
 
         } else {
@@ -126,6 +133,25 @@ public class DeatailsActivity extends AppCompatActivity {
 
                 } else
                     toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.enable));
+                FirebaseApp.initializeApp(DeatailsActivity.this);
+
+                FirebaseInstanceId.getInstance().getInstanceId()
+                        .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                                if (!task.isSuccessful()) {
+                                    Log.w("DeatailsActivity", "getInstanceId failed", task.getException());
+                                    return;
+                                }
+
+                                // Get new Instance ID token
+                                String token = task.getResult().getToken();
+
+                                // Log and toast
+                                Log.d("DeatailsActivityToken", token);
+                                Toast.makeText(DeatailsActivity.this, token, Toast.LENGTH_SHORT).show();
+                            }
+                        });
 
             }
         });
