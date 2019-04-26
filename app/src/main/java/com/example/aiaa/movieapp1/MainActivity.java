@@ -50,8 +50,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 // Obtain the FirebaseAnalytics instance.
 
-        scheduleJob(this);
+//        scheduleJob(this);
+        FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(this));
 
+        //creating new job and adding it with dispatcher
+
+        Job myJob = dispatcher.newJobBuilder()
+                .setService(ScheduledJobService.class) // the JobService that will be called
+                .setTag("my-unique-tag")        // uniquely identifies the job
+                .build();
+
+        dispatcher.mustSchedule(myJob);
 
         recyclerView = findViewById(R.id.recyclerview);
 
@@ -168,10 +177,11 @@ public class MainActivity extends AppCompatActivity {
     }
     public static void scheduleJob(Context context) {
         //creating new firebase job dispatcher
-        FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(context));
-        //creating new job and adding it with dispatcher
-        Job job = createJob(dispatcher);
-        dispatcher.mustSchedule(job);
+
+
+
+//        Job job = createJob(dispatcher);
+//        dispatcher.mustSchedule(job);
     }
 
     public static Job createJob(FirebaseJobDispatcher dispatcher){
