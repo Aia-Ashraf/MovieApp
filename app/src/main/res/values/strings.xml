@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Popular Movies</string>
+    <string name="app_name">Movie App</string>
     <string name="top_rated">Top Rated Movies</string>
     <string name="error">Error</string>
     <string name="API_key">11af5a2e9dda5914db6389d51f4a1e9f</string>
