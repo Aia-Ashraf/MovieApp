@@ -61,7 +61,7 @@ public class ScheduledJobService extends JobService {
 //              MyWidgetProvider.class);
 //      int[] allWidgetIds2 = appWidgetManager.getAppWidgetIds(thisWidget);
 
-            for (int widgetId : allWidgetIds) {
+/*            for (int widgetId : allWidgetIds) {
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this
                         .getApplicationContext());
 
@@ -86,7 +86,7 @@ public class ScheduledJobService extends JobService {
                         getApplicationContext(), 0, clickIntent,
                         PendingIntent.FLAG_UPDATE_CURRENT);
                 appWidgetManager.updateAppWidget(widgetId, views);
-            }
+            }*/
             stopSelf();
 
 
