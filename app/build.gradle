@@ -9,7 +9,6 @@ android {
             keyAlias 'update'
             storePassword 'aia00000'
             keyPassword 'aia00000'
-
         }
         }
     defaultConfig {
