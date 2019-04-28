@@ -8,6 +8,8 @@ import java.util.List;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.aiaa.movieapp1.Models.Movie;
+
 public class FavRepository {
 
     private DaoFavourite daoFavourite;

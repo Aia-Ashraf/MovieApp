@@ -12,6 +12,8 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.aiaa.movieapp1.Models.Movie;
+
 
 @Database(entities = {Movie.class}, version = 1, exportSchema = false)
 public abstract class FavouritDatabase extends RoomDatabase {

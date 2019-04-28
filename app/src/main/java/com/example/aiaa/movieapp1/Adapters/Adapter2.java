@@ -1,4 +1,4 @@
-package com.example.aiaa.movieapp1;
+package com.example.aiaa.movieapp1.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,18 +11,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.aiaa.movieapp1.DeatailsActivity;
 import com.example.aiaa.movieapp1.Models.Article;
-import com.example.aiaa.movieapp1.Models.Movie;
+import com.example.aiaa.movieapp1.R;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import androidx.recyclerview.widget.RecyclerView;
 
-
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.movieViewHolder> {
+public class Adapter2 extends RecyclerView.Adapter<Adapter2.movieViewHolder> {
     private List<Article> articleList;
     String firstURLPart = "http://image.tmdb.org/t/p/w185";
     private Context context;
@@ -30,7 +30,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.movieViewHol
 
     public Article mPosition;
 
-    public MovieAdapter(Context context, List<Article> articles) {
+    public Adapter2(Context context, List<Article> articles) {
         this.context = context;
         this.articleList = articles;
         mPosition = null;
@@ -39,7 +39,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.movieViewHol
     @Override
     public movieViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
-        int layoutIdForListItem = R.layout.item_img;
+        int layoutIdForListItem = R.layout.item2;
         LayoutInflater inflater = LayoutInflater.from(context);
         boolean shouldAttachToParentImmediately = false;
         View view = inflater.inflate(layoutIdForListItem, parent, shouldAttachToParentImmediately);
@@ -108,8 +108,8 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.movieViewHol
 
         public movieViewHolder(View itemView) {
             super(itemView);
-            img = (ImageView) itemView.findViewById(R.id.iv_item);
-            titleMain = (TextView) itemView.findViewById(R.id.tv_main_title);
+            img = (ImageView) itemView.findViewById(R.id.iv_item2);
+            titleMain = (TextView) itemView.findViewById(R.id.tv_main_title2);
 
         }
     }

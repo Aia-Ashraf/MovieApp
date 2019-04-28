@@ -1,4 +1,4 @@
-package com.example.aiaa.movieapp1;
+package com.example.aiaa.movieapp1.Models;
 
 import android.os.Parcel;
 import android.os.Parcelable;

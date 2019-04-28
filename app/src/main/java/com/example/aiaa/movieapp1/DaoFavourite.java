@@ -10,6 +10,8 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.example.aiaa.movieapp1.Models.Movie;
+
 @Dao
 public interface DaoFavourite {
     @Insert

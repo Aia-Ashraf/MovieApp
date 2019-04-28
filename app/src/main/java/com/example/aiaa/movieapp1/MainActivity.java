@@ -7,6 +7,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.aiaa.movieapp1.Adapters.Adapter2;
+import com.example.aiaa.movieapp1.Models.Article;
+import com.example.aiaa.movieapp1.Models.KoraList;
+import com.example.aiaa.movieapp1.Models.Movie;
+import com.example.aiaa.movieapp1.Models.MoviesList;
 import com.firebase.jobdispatcher.Constraint;
 import com.firebase.jobdispatcher.FirebaseJobDispatcher;
 import com.firebase.jobdispatcher.GooglePlayDriver;
@@ -21,6 +26,7 @@ import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,16 +39,18 @@ public class MainActivity extends AppCompatActivity {
 
 
     private Retrofit retrofit;
-    public static String BASE_URL = "https://api.themoviedb.org/";
+    public static String BASE_URL = "https://newsapi.org/";
 
     private List<Movie> list;
+    private List<Article> articles;
+
 
     private RecyclerView recyclerView;
+    private RecyclerView recyclerViewFirst;
     private MovieAdapter movieAdapter;
+    private Adapter2 adapter2;
 
     public FavouritDatabase mDB;
-
-    //  public static final int NEW_DETAILS_ACTIVITY_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,20 +71,33 @@ public class MainActivity extends AppCompatActivity {
         dispatcher.mustSchedule(myJob);
 
         recyclerView = findViewById(R.id.recyclerview);
-
         //    LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        int numberOfColumns = 2;
+        int numberOfColumns = 1;
         recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
         // recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
         getRetrofitResponse();
-        movieAdapter = new MovieAdapter(this, list);
+        adapter2 = new Adapter2(this, articles);
+        recyclerView.setAdapter(adapter2);
+        adapter2.mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+        list = new ArrayList<>();
+        adapter2.setMovieList(articles);
+
+
+        recyclerView = findViewById(R.id.recyclerviewFirst);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+
+        getRetrofitResponse();
+        movieAdapter = new MovieAdapter(this, articles);
         recyclerView.setAdapter(movieAdapter);
         movieAdapter.mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         list = new ArrayList<>();
-        movieAdapter.setMovieList(list);
+        movieAdapter.setMovieList(articles);
 
         mDB = FavouritDatabase.getInstance(getApplicationContext());
 
@@ -90,14 +111,15 @@ public class MainActivity extends AppCompatActivity {
                     .addConverterFactory(GsonConverterFactory.create())
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .build();
-            retrofit.create(ApiInterface.class).Data(getString(R.string.API_key)).enqueue(new Callback<MoviesList>() {
+            retrofit.create(ApiInterface.class).Data(getString(R.string.country),getString(R.string.category),getString(R.string.API_key)).enqueue(new Callback<KoraList>() {
                 @Override
-                public void onResponse(Call<MoviesList> call, Response<MoviesList> response) {
+                public void onResponse(Call<KoraList> call, Response<KoraList> response) {
                     try {
-                        if (response.code() == 200) {
+                        if (response.code() == 200 || response.isSuccessful()==true) {
 
-                            list = response.body().getMovies();
-                            movieAdapter.setMovieList(list);
+                            articles = response.body().getArticles();
+                            movieAdapter.setMovieList(articles);
+                            adapter2.setMovieList(articles);
 
                         } else {
 
@@ -109,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onFailure(Call<MoviesList> call, Throwable t) {
+                public void onFailure(Call<KoraList> call, Throwable t) {
                     Toast.makeText(MainActivity.this, R.string.error, Toast.LENGTH_LONG);
                 }
             });
@@ -124,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     if (response.code() == 200) {
                         list = response.body().getMovies();
-                        movieAdapter.setMovieList(list);
+                        movieAdapter.setMovieList(articles);
 
                     } else {
                         Toast.makeText(MainActivity.this, R.string.error, Toast.LENGTH_LONG);
@@ -159,18 +181,18 @@ public class MainActivity extends AppCompatActivity {
             //   Collections.sort(list,Movie.Sort_BY_Rate);
             setTitle(R.string.Top_Rated);
             getTopRatedRetrofitResponse();
-            movieAdapter = new MovieAdapter(this, list);
+            movieAdapter = new MovieAdapter(this, articles);
             recyclerView.setAdapter(movieAdapter);
             list = new ArrayList<>();
-            movieAdapter.setMovieList(list);
+            movieAdapter.setMovieList(articles);
 
         } else if (item.getItemId() == R.id.Popularty) {
             setTitle(R.string.app_name);
             getRetrofitResponse();
-            movieAdapter = new MovieAdapter(this, list);
+            movieAdapter = new MovieAdapter(this, articles);
             recyclerView.setAdapter(movieAdapter);
             list = new ArrayList();
-            movieAdapter.setMovieList(list);
+            movieAdapter.setMovieList(articles);
 
         }
         return super.onOptionsItemSelected(item);

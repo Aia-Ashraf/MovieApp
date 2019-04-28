@@ -1,4 +1,4 @@
-package com.example.aiaa.movieapp1;
+package com.example.aiaa.movieapp1.Models;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

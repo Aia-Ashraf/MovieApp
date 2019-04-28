@@ -1,6 +1,9 @@
 package com.example.aiaa.movieapp1;
 
 
+import com.example.aiaa.movieapp1.Models.KoraList;
+import com.example.aiaa.movieapp1.Models.MoviesList;
+
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -8,8 +11,8 @@ import retrofit2.http.Query;
 
 public interface ApiInterface {
 
-    @GET("3/movie/popular")
-    Call<MoviesList> Data(@Query("api_key") String api_key);
+    @GET("v2/top-headlines")
+    Call<KoraList> Data(@Query("country") String country, @Query("category") String category, @Query("apiKey") String api_key);
 
     interface TopRated {
         @GET("3/movie/top_rated")

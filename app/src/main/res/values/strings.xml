@@ -2,7 +2,9 @@
     <string name="app_name">Movie App</string>
     <string name="top_rated">Top Rated Movies</string>
     <string name="error">Error</string>
-    <string name="API_key">11af5a2e9dda5914db6389d51f4a1e9f</string>
+    <string name="API_key">aa101e13a76b4e259ab2cc739092edb7</string>
+    <string name="country">eg</string>
+    <string name="category">sports</string>
     <string name="title">title</string>
     <string name="Top_Rated">Sort By Top Rated</string>
     <string name="Popular">Sort By Popularty</string>
