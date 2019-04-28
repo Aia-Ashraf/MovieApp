@@ -4,10 +4,13 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     signingConfigs {
-        storeFile rootProject.file('app/keyStore.jks')
-            keyAlias 'update'/
+        release {
+            storeFile file('app/keyStore.jks')
+            keyAlias 'update'
             storePassword 'aia00000'
             keyPassword 'aia00000'
+
+        }
         }
     defaultConfig {
         applicationId "com.example.aiaa.movieapp1"
