@@ -37,14 +37,13 @@
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:id="@+id/myToggleButton"
-            android:layout_marginLeft="300dp"
+            android:layout_marginStart="300dp"
             android:gravity="top"></ToggleButton>
 </RelativeLayout>
         <TextView
             android:id="@+id/tv_releaseDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="56dp"
             android:textColor="#000000"
@@ -56,7 +55,6 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="12dp"
             android:textColor="#000000 "
@@ -69,7 +67,6 @@
             android:id="@+id/tv_vote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="328dp"
             android:layout_marginStart="328dp"
             android:layout_marginTop="12dp"
             android:textColor="	#CCCC00	"

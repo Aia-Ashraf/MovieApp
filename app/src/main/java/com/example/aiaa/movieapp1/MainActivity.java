@@ -3,6 +3,7 @@ package com.example.aiaa.movieapp1;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ import java.util.List;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -36,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     public static String BASE_URL = "https://api.themoviedb.org/";
 
     private List<Movie> list;
+    private Parcelable mLayoutManagerSavedState;
+
 
     private RecyclerView recyclerView;
     private MovieAdapter movieAdapter;
@@ -48,21 +52,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        outState.putParcelable("LIST_INSTANCE_STATE",gridLayoutManager.onSaveInstanceState());
+        outState.putParcelable("LIST_INSTANCE_STATE", gridLayoutManager.onSaveInstanceState());
 
         super.onSaveInstanceState(outState);
     }
 
 
     @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.getParcelable("LIST_INSTANCE_STATE");
-        super.onRestoreInstanceState(savedInstanceState);
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 // Obtain the FirebaseAnalytics instance.
 
@@ -92,15 +91,15 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(movieAdapter);
         movieAdapter.mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         if (savedInstanceState != null) {
-
-            // retrieve the previously saved movie list data from the passed-in bundle
+            recyclerView.getLayoutManager().onRestoreInstanceState(mLayoutManagerSavedState);
         } else {
             // initialize the list to a new empty list
             list = new ArrayList<>();
+            movieAdapter.setMovieList(list);
+
 
             // kick off the data fetching task
         }
-        movieAdapter.setMovieList(list);
 
         mDB = FavouritDatabase.getInstance(getApplicationContext());
 
@@ -199,16 +198,16 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     public static void scheduleJob(Context context) {
         //creating new firebase job dispatcher
-
 
 
 //        Job job = createJob(dispatcher);
 //        dispatcher.mustSchedule(job);
     }
 
-    public static Job createJob(FirebaseJobDispatcher dispatcher){
+    public static Job createJob(FirebaseJobDispatcher dispatcher) {
 
         Job job = dispatcher.newJobBuilder()
                 //persist the task across boots
@@ -246,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
         return newJob;
     }
 
-    public void cancelJob(Context context){
+    public void cancelJob(Context context) {
 
         FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(context));
         //Cancel all the jobs for this package

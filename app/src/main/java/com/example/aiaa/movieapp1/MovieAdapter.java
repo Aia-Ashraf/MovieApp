@@ -43,11 +43,14 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.movieViewHol
         View view = inflater.inflate(layoutIdForListItem, parent, shouldAttachToParentImmediately);
         return new movieViewHolder(view);
 
+
     }
 
     @Override
     public void onBindViewHolder(final movieViewHolder movieViewHolder, int position) {
+
         final Movie mPosition = modelList.get(position);
+
         Double voteMoview = mPosition.getVoteAverage();
         Bundle bundle = new Bundle();
         bundle.putString(FirebaseAnalytics.Param.ITEM_ID, mPosition.id.toString());

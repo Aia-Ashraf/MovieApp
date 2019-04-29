@@ -4,6 +4,10 @@ apply plugin: 'com.google.gms.google-services'
 
 
 android {
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
     compileSdkVersion 28
     signingConfigs {
         release {
@@ -14,6 +18,7 @@ android {
         }
         }
     defaultConfig {
+
         applicationId "com.example.aiaa.movieapp1"
         minSdkVersion 19
         targetSdkVersion 28
@@ -61,4 +66,6 @@ dependencies {
     implementation 'com.firebase:firebase-jobdispatcher:0.8.5'
     implementation 'com.google.firebase:firebase-core:16.0.8'
     implementation 'com.google.firebase:firebase-messaging:17.6.0'
+    implementation 'com.android.support:multidex:1.0.3'
+
 }
