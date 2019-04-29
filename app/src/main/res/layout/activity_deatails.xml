@@ -14,11 +14,13 @@
 <RelativeLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/Rlayout">
+    android:id="@+id/Rlayout"
+    tools:ignore="MissingConstraints">
 
         <ImageView
             android:id="@+id/image_iv"
             android:layout_width="match_parent"
+            android:contentDescription=" "
             android:layout_height="800dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
@@ -92,7 +94,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Reviews"
+            android:text="@string/reviews"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/tv_details"
             android:id="@+id/tv_reviewsTitle"
@@ -114,7 +116,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Trailers"
+            android:text="@string/trailers"
             android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/RV_Reviews"
             android:id="@+id/tv_trailers"

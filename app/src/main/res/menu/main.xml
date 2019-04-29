@@ -7,7 +7,7 @@
         android:id="@+id/back"
         android:icon="?attr/homeAsUpIndicator"
         android:orderInCategory="2"
-        android:title="back"
+        android:title="@string/back"
         app:showAsAction="ifRoom"></item>
     <item
         android:id="@+id/Top_Rated"

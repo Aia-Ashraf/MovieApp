@@ -182,7 +182,7 @@ public class DeatailsActivity extends AppCompatActivity {
                 .into(imageView);
 
         title.setText(MovieTitle);
-        releaseDate.setText("Release Data : " + MovieReleseData);
+        releaseDate.setText((R.string.release_data) + MovieReleseData);
         vote.setText(String.valueOf(voteMoview));
         details.setText(plot);
 

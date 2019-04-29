@@ -39,10 +39,26 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private MovieAdapter movieAdapter;
+    private GridLayoutManager gridLayoutManager;
 
     public FavouritDatabase mDB;
 
     //  public static final int NEW_DETAILS_ACTIVITY_REQUEST_CODE = 1;
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putParcelable("LIST_INSTANCE_STATE",gridLayoutManager.onSaveInstanceState());
+
+        super.onSaveInstanceState(outState);
+    }
+
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.getParcelable("LIST_INSTANCE_STATE");
+        super.onRestoreInstanceState(savedInstanceState);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +82,8 @@ public class MainActivity extends AppCompatActivity {
 
         //    LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         int numberOfColumns = 2;
-        recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
+        gridLayoutManager = new GridLayoutManager(this, numberOfColumns);
+        recyclerView.setLayoutManager(gridLayoutManager);
         // recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
@@ -74,8 +91,15 @@ public class MainActivity extends AppCompatActivity {
         movieAdapter = new MovieAdapter(this, list);
         recyclerView.setAdapter(movieAdapter);
         movieAdapter.mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        if (savedInstanceState != null) {
 
-        list = new ArrayList<>();
+            // retrieve the previously saved movie list data from the passed-in bundle
+        } else {
+            // initialize the list to a new empty list
+            list = new ArrayList<>();
+
+            // kick off the data fetching task
+        }
         movieAdapter.setMovieList(list);
 
         mDB = FavouritDatabase.getInstance(getApplicationContext());

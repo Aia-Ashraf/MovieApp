@@ -13,7 +13,7 @@
         android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        ></androidx.recyclerview.widget.RecyclerView>
+        tools:ignore="MissingConstraints"></androidx.recyclerview.widget.RecyclerView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout

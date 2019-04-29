@@ -6,7 +6,7 @@
         android:id="@+id/tvAuther"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:text="Name"
+        android:text="@string/name"
         android:textSize="25dp"/>
 
     <TextView

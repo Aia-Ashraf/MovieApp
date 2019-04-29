@@ -8,13 +8,14 @@
         android:id="@+id/tvName"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:text="Name"
+        android:text="@string/name"
         android:textSize="25dp"/>
 
     <ImageView
         android:id="@+id/vvTrailer"
         android:layout_width="150dp"
         android:translationX="200dp"
+        android:contentDescription=" "
         android:layout_height="150dp"
         android:paddingBottom="50dp"
         android:background="@drawable/youtube_icon" />

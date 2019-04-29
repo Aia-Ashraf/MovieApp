@@ -15,7 +15,7 @@
         android:layout_margin="8dp"
         android:background="#09C"
         android:contentDescription="@string/appwidget_text"
-        android:text="DON'T MISS TO WACH :"
+        android:text="@string/don_t_miss_to_wach"
         android:textColor="#ffffff"
         android:textSize="24sp"
         android:textStyle="bold|italic" />
