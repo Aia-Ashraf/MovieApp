@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Movie App</string>
+    <string name="app_name">Koraa</string>
     <string name="top_rated">Top Rated Movies</string>
     <string name="error">Error</string>
     <string name="API_key">aa101e13a76b4e259ab2cc739092edb7</string>

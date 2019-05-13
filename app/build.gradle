@@ -17,39 +17,30 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
         }
     }
 }
 dependencies {
     def room_version = "2.1.0-alpha03"
     def lifecycle_version = "2.0.0"
+    compile fileTree(dir: 'libs', include: ['*.jar'])
 
-
-
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0-alpha01'
-
+    compile 'androidx.appcompat:appcompat:1.1.0-alpha01'
     compile 'com.android.support:multidex:1.0.3'
-
-
-
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-
+    compile 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.3.0'
-    implementation 'com.squareup.picasso:picasso:2.71828'
+    compile 'com.squareup.picasso:picasso:2.71828'
     compile 'com.squareup.retrofit2:converter-scalars:2.3.0'
     compile 'androidx.recyclerview:recyclerview:1.1.0-alpha01'
-    implementation "androidx.room:room-runtime:$room_version"
+    compile "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
-    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    compile "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
-
-    implementation 'androidx.cardview:cardview:1.0.0'
+    compile 'androidx.cardview:cardview:1.0.0'
     compile 'com.firebase:firebase-jobdispatcher:0.8.5'
     compile 'com.google.firebase:firebase-core:16.0.8'
     compile 'com.google.firebase:firebase-messaging:17.6.0'

@@ -170,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+
         menu.findItem(R.id.back).setVisible(false);
 
         return true;
@@ -177,6 +178,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+
         if (item.getItemId() == R.id.Top_Rated) {
             //   Collections.sort(list,Movie.Sort_BY_Rate);
             setTitle(R.string.Top_Rated);
