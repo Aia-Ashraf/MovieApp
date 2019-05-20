@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Registeration.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,6 +24,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".DeatailsActivity" />
+        <activity android:name=".Registeration.activity_signup" />
+        <activity android:name=".Registeration.ResetPasswordActivity" />
+        <activity android:name=".MainActivity" />
+
 
         <receiver android:name=".MovieAppWidget">
             <intent-filter>
