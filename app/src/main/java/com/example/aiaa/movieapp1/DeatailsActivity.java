@@ -67,13 +67,14 @@ public class DeatailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_deatails);
 
         favviewmodel = ViewModelProviders.of(this).get(favViewModel.class);
-        favviewmodel.getMovie().observe(this, new Observer<List<Movie>>() {
+        /*favviewmodel.getMovie().observe(DeatailsActivity, new Observer<List<Movie>>() {
             @Override
             public void onChanged(List<Movie> movies) {
                 Log.e("Aia", "favRetriveDetailsActivity" + movie);
 
             }
-        });
+        }
+        );*/
 
 
         imageView = findViewById(R.id.image_iv);

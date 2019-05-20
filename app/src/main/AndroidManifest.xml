@@ -40,7 +40,6 @@
         </receiver>
 
         <service
-
             android:name=".ScheduledJobService"
             android:exported="false">
             <intent-filter>
