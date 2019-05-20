@@ -5,6 +5,7 @@ buildscript {
     repositories {
         google()
         jcenter()
+        mavenCentral()
         maven {
             url 'repo1.maven.org/maven2';
 
