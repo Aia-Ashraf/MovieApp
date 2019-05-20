@@ -1,37 +1,52 @@
 {
   "project_info": {
-    "project_number": "421628360507",
-    "firebase_url": "https://moviejava.firebaseio.com",
-    "project_id": "moviejava",
-    "storage_bucket": "moviejava.appspot.com"
+    "project_number": "591416605771",
+    "firebase_url": "https://fir-registration-bfcd0.firebaseio.com",
+    "project_id": "fir-registration-bfcd0",
+    "storage_bucket": "fir-registration-bfcd0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:421628360507:android:f727fa3f70b34067",
+        "mobilesdk_app_id": "1:591416605771:android:4329b511e5e4108c",
         "android_client_info": {
-          "package_name": "com.example.aiaa.movieapp1"
+          "package_name": "com.example.ahasan.firebaseregistration"
         }
       },
       "oauth_client": [
         {
-          "client_id": "421628360507-937ur54o8gjh5ki0nhj867o1l9sfb8ma.apps.googleusercontent.com",
+          "client_id": "591416605771-pukh5lps3q392rf5ksbk3hh4pmc6gcld.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ahasan.firebaseregistration",
+            "certificate_hash": "d6c0cd96babf3cd5b3432559214fc1dbf3873a49"
+          }
+        },
+        {
+          "client_id": "591416605771-8afvhcthn81u35drkjgqctqnutvulk3r.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD90JgQT6uL-1ykSbqYJyE0v53Y7nmY-Vw"
+          "current_key": "AIzaSyCHDw3FBz9nUOOzdnEQTNxKQQGu6Y4ntOw"
         }
       ],
       "services": {
+        "analytics_service": {
+          "status": 1
+        },
         "appinvite_service": {
+          "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "421628360507-937ur54o8gjh5ki0nhj867o1l9sfb8ma.apps.googleusercontent.com",
+              "client_id": "591416605771-8afvhcthn81u35drkjgqctqnutvulk3r.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
+        },
+        "ads_service": {
+          "status": 2
         }
       }
     }
