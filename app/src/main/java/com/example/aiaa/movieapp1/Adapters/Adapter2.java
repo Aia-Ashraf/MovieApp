@@ -73,7 +73,7 @@ public class Adapter2 extends RecyclerView.Adapter<Adapter2.movieViewHolder> {
             public void onClick(View v) {
                 if (mPosition.getUrlToImage() != null) {
                     Intent intent = new Intent(context, DeatailsActivity.class)
-                            .putExtra("parcelable_extra_details", (Parcelable) mPosition);
+                            .putExtra("parcelable_extra", (Parcelable) mPosition);
                     context.startActivity(intent);
 
                 }

@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import com.example.aiaa.movieapp1.Models.Article;
 import com.example.aiaa.movieapp1.Models.Movie;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -44,7 +43,7 @@ public class DeatailsActivity extends AppCompatActivity {
     String firstURLPart = "http://image.tmdb.org/t/p/w185";
     ImageView imageView;
     TextView title;
-    Article article;
+    Movie movie;
     TextView releaseDate;
     TextView vote;
     TextView details;
@@ -87,13 +86,13 @@ public class DeatailsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        article = intent.getExtras().getParcelable("parcelable_extra_details");
-//        String PhotoPath = article.getPosterPath();
-        String MovieTitle = article.getTitle();
-        String MovieReleseData = article.getPublishedAt();
-        String voteMoview = article.getContent();
-        String plot = article.getDescription();
-        movieID = article.getAuthor();
+        movie = intent.getExtras().getParcelable("parcelable_extra");
+        String PhotoPath = movie.getPosterPath();
+        String MovieTitle = movie.getTitle();
+        String MovieReleseData = movie.getReleaseDate();
+        Double voteMoview = movie.getVoteAverage();
+        String plot = movie.getOverview();
+        movieID = movie.id.toString();
 
         recyclerView = findViewById(R.id.vv);
         int numberOfColumns = 1;
@@ -103,12 +102,7 @@ public class DeatailsActivity extends AppCompatActivity {
         recyclerViewReviews.setLayoutManager(new LinearLayoutManager(DeatailsActivity.this));
         recyclerViewReviews.setHasFixedSize(true);
 
-<<<<<<< HEAD
         if (mDB.daoFavourite().fetchOneMoviesbyMovieId(MovieTitle) == null) {
-=======
-
-     /*   if (mDB.daoFavourite().fetchOneMoviesbyMovieId(MovieTitle) == null) {
->>>>>>> 2bb08eaa28d3ff9ffe2a18b25a3e088e005094c8
 
             mDB.daoFavourite().insertOnlySingleMovie(movie);
             toggleButton.setChecked(false);
@@ -125,7 +119,7 @@ public class DeatailsActivity extends AppCompatActivity {
             Log.e("Fav", "notExist");
 
         }
-*/
+
         toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -172,12 +166,7 @@ public class DeatailsActivity extends AppCompatActivity {
         reviewsModelList = new ArrayList<>();
         reviewsAdapter.setMovieReviewList(reviewsModelList);
 
-<<<<<<< HEAD
         Picasso.get().load(firstURLPart + PhotoPath)
-=======
-
-        Picasso.get().load(article.getUrlToImage())
->>>>>>> 2bb08eaa28d3ff9ffe2a18b25a3e088e005094c8
                 .resize(200, 200)
                 .centerCrop()
                 .placeholder(R.drawable.scope_placeholder)
