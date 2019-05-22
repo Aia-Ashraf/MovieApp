@@ -76,7 +76,6 @@ public class DeatailsActivity extends AppCompatActivity {
         }
         );*/
 
-
         imageView = findViewById(R.id.image_iv);
         title = findViewById(R.id.tv_title);
         releaseDate = findViewById(R.id.tv_releaseDate);
@@ -95,17 +94,13 @@ public class DeatailsActivity extends AppCompatActivity {
         String plot = movie.getOverview();
         movieID = movie.id.toString();
 
-
         recyclerView = findViewById(R.id.vv);
         int numberOfColumns = 1;
         recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
         recyclerView.setHasFixedSize(true);
-
         recyclerViewReviews = findViewById(R.id.RV_Reviews);
-
         recyclerViewReviews.setLayoutManager(new LinearLayoutManager(DeatailsActivity.this));
         recyclerViewReviews.setHasFixedSize(true);
-
 
         if (mDB.daoFavourite().fetchOneMoviesbyMovieId(MovieTitle) == null) {
 
@@ -122,7 +117,6 @@ public class DeatailsActivity extends AppCompatActivity {
             Log.e("Fav", "deteted" + mDB);
             toggleButton.setBackgroundDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.enable));
             Log.e("Fav", "notExist");
-
 
         }
 
@@ -147,7 +141,6 @@ public class DeatailsActivity extends AppCompatActivity {
 
                                 // Get new Instance ID token
                                 String token = task.getResult().getToken();
-
                                 // Log and toast
                                 Log.d("DeatailsActivityToken", token);
                                 Toast.makeText(DeatailsActivity.this, token, Toast.LENGTH_SHORT).show();
@@ -160,7 +153,6 @@ public class DeatailsActivity extends AppCompatActivity {
         toggleButton.setTextOn(null);
         toggleButton.setTextOff(null);
 
-
         getTrailers();
         RetrofitGetReviews();
         Log.e("movieID", movieID + "");
@@ -169,12 +161,10 @@ public class DeatailsActivity extends AppCompatActivity {
         movieTrailersList = new ArrayList<>();
         trailersAdapter.setMovieTrailersListList(movieTrailersList);
 
-
         reviewsAdapter = new ReviewsAdapter(this, reviewsModelList);
         recyclerViewReviews.setAdapter(reviewsAdapter);
         reviewsModelList = new ArrayList<>();
         reviewsAdapter.setMovieReviewList(reviewsModelList);
-
 
         Picasso.get().load(firstURLPart + PhotoPath)
                 .resize(200, 200)
@@ -186,7 +176,6 @@ public class DeatailsActivity extends AppCompatActivity {
         releaseDate.setText("Release Data : " + MovieReleseData);
         vote.setText(String.valueOf(voteMoview));
         details.setText(plot);
-
     }
 
 
@@ -195,7 +184,6 @@ public class DeatailsActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main, menu);
         menu.findItem(R.id.Top_Rated).setVisible(false);
         menu.findItem(R.id.Popularty).setVisible(false);
-
         return true;
     }
 
@@ -233,35 +221,26 @@ public class DeatailsActivity extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(DeatailsActivity.this, R.string.error, Toast.LENGTH_LONG).show();
-
                 }
             }
 
             @Override
             public void onFailure(Call<MovieTrailerList> call, Throwable t) {
                 Toast.makeText(DeatailsActivity.this, R.string.error, Toast.LENGTH_LONG).show();
-
             }
         });
     }
 
     public void RetrofitGetReviews() {
-
         retrofit.create(ApiInterface.MovieReviewAPI.class).getMovieReview(movieID, getString(R.string.API_key)).enqueue(new Callback<Reviews>() {
             @Override
             public void onResponse(Call<Reviews> call, Response<Reviews> response) {
                 if (response.code() == 200) {
-
-
                     Reviews reviews = response.body();
                     reviewsModelList = reviews.getResults();
                     reviewsAdapter.setMovieReviewList(reviewsModelList);
-
-
                     //  reviewsModelList = response.body().getResults();
                     //  String auther = reviewsModelList.getString("NeededString");
-
-
                     Log.e("Aia", reviews.toString());
                 } else {
                     Toast.makeText(DeatailsActivity.this, R.string.error, Toast.LENGTH_LONG).show();
@@ -270,15 +249,12 @@ public class DeatailsActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Reviews> call, Throwable t) {
-
             }
         });
     }
 
     @Override
     protected void onResume() {
-
         super.onResume();
     }
-
 }
