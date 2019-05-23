@@ -37,7 +37,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="343dp"
                     />
-
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <LinearLayout
