@@ -103,9 +103,6 @@ public class DeatailsActivity extends AppCompatActivity {
         recyclerViewReviews.setLayoutManager(new LinearLayoutManager(DeatailsActivity.this));
         recyclerViewReviews.setHasFixedSize(true);
 
-<<<<<<< HEAD
-        if (mDB.daoFavourite().fetchOneMoviesbyMovieId(MovieTitle) == null) {
-=======
 
      /*   if (mDB.daoFavourite().fetchOneMoviesbyMovieId(MovieTitle) == null) {
 >>>>>>> 2bb08eaa28d3ff9ffe2a18b25a3e088e005094c8
@@ -159,8 +156,8 @@ public class DeatailsActivity extends AppCompatActivity {
         toggleButton.setTextOn(null);
         toggleButton.setTextOff(null);
 
-        getTrailers();
-        RetrofitGetReviews();
+//        getTrailers();
+//        RetrofitGetReviews();
         Log.e("movieID", movieID + "");
         trailersAdapter = new TrailersMovieAdapter(this, movieTrailersList);
         recyclerView.setAdapter(trailersAdapter);
@@ -172,12 +169,9 @@ public class DeatailsActivity extends AppCompatActivity {
         reviewsModelList = new ArrayList<>();
         reviewsAdapter.setMovieReviewList(reviewsModelList);
 
-<<<<<<< HEAD
-        Picasso.get().load(firstURLPart + PhotoPath)
-=======
+//        Picasso.get().load(firstURLPart + PhotoPath)
 
         Picasso.get().load(article.getUrlToImage())
->>>>>>> 2bb08eaa28d3ff9ffe2a18b25a3e088e005094c8
                 .resize(200, 200)
                 .centerCrop()
                 .placeholder(R.drawable.scope_placeholder)
