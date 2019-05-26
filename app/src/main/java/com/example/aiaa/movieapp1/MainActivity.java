@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.aiaa.movieapp1.Adapters.Adapter2;
@@ -27,16 +26,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -57,7 +49,7 @@ public class MainActivity extends  FragmentActivity implements NavigationView.On
     private List<Article> articles;
     private RecyclerView recyclerView;
     private RecyclerView recyclerViewFirst;
-    private MovieAdapter movieAdapter;
+    private FirstAdapter firstAdapter;
     private Adapter2 adapter2;
     public FavouritDatabase mDB;
     DrawerNavFragment drawerNavFragment;
@@ -109,12 +101,12 @@ public class MainActivity extends  FragmentActivity implements NavigationView.On
         recyclerView.setHasFixedSize(true);
 
         getRetrofitResponse();
-        movieAdapter = new MovieAdapter(this, articles);
-        recyclerView.setAdapter(movieAdapter);
-        movieAdapter.mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        firstAdapter = new FirstAdapter(this, articles);
+        recyclerView.setAdapter(firstAdapter);
+        firstAdapter.mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         list = new ArrayList<>();
-        movieAdapter.setMovieList(articles);
+        firstAdapter.setMovieList(articles);
 
         mDB = FavouritDatabase.getInstance(getApplicationContext());
 
@@ -135,7 +127,7 @@ public class MainActivity extends  FragmentActivity implements NavigationView.On
                         if (response.code() == 200 || response.isSuccessful() == true) {
 
                             articles = response.body().getArticles();
-                            movieAdapter.setMovieList(articles);
+                            firstAdapter.setMovieList(articles);
                             adapter2.setMovieList(articles);
 
                         } else {
@@ -163,7 +155,7 @@ public class MainActivity extends  FragmentActivity implements NavigationView.On
                 try {
                     if (response.code() == 200) {
                         list = response.body().getMovies();
-                        movieAdapter.setMovieList(articles);
+                        firstAdapter.setMovieList(articles);
 
                     } else {
                         Toast.makeText(MainActivity.this, R.string.error, Toast.LENGTH_LONG);
@@ -201,18 +193,18 @@ public class MainActivity extends  FragmentActivity implements NavigationView.On
             //   Collections.sort(list,Movie.Sort_BY_Rate);
             setTitle(R.string.Top_Rated);
             getTopRatedRetrofitResponse();
-            movieAdapter = new MovieAdapter(this, articles);
-            recyclerView.setAdapter(movieAdapter);
+            firstAdapter = new FirstAdapter(this, articles);
+            recyclerView.setAdapter(firstAdapter);
             list = new ArrayList<>();
-            movieAdapter.setMovieList(articles);
+            firstAdapter.setMovieList(articles);
 
         } else if (item.getItemId() == R.id.Popularty) {
             setTitle(R.string.app_name);
             getRetrofitResponse();
-            movieAdapter = new MovieAdapter(this, articles);
-            recyclerView.setAdapter(movieAdapter);
+            firstAdapter = new FirstAdapter(this, articles);
+            recyclerView.setAdapter(firstAdapter);
             list = new ArrayList();
-            movieAdapter.setMovieList(articles);
+            firstAdapter.setMovieList(articles);
 
         }
         return super.onOptionsItemSelected(item);

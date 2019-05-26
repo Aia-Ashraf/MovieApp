@@ -22,7 +22,7 @@ import java.util.List;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.movieViewHolder> {
+class FirstAdapter extends RecyclerView.Adapter<FirstAdapter.movieViewHolder> {
     private List<Article> articleList;
     String firstURLPart = "http://image.tmdb.org/t/p/w185";
     private Context context;
@@ -30,7 +30,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.movieViewHol
 
     public Article mPosition;
 
-    public MovieAdapter(Context context, List<Article> articles) {
+    public FirstAdapter(Context context, List<Article> articles) {
         this.context = context;
         this.articleList = articles;
         mPosition = null;
