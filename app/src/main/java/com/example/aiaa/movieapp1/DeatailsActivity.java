@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.example.aiaa.movieapp1.Models.Article;
 import com.example.aiaa.movieapp1.Models.Movie;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -42,11 +43,9 @@ public class DeatailsActivity extends AppCompatActivity {
 
     String firstURLPart = "http://image.tmdb.org/t/p/w185";
     ImageView imageView;
-    TextView title;
-    Movie movie;
-    TextView releaseDate;
-    TextView vote;
-    TextView details;
+    TextView title,releaseDate,content,description,URL;
+    Article article;
+
 
     private Retrofit retrofit;
     public static String BASE_URL = "https://api.themoviedb.org/";
@@ -79,30 +78,33 @@ public class DeatailsActivity extends AppCompatActivity {
         imageView = findViewById(R.id.image_iv);
         title = findViewById(R.id.tv_title);
         releaseDate = findViewById(R.id.tv_releaseDate);
-        vote = findViewById(R.id.tv_vote);
-        details = findViewById(R.id.tv_details);
-        toggleButton = findViewById(R.id.myToggleButton);
+        URL = findViewById(R.id.tv_url);
+        description = findViewById(R.id.tv_details);
+//        toggleButton = findViewById(R.id.myToggleButton);
         mDB = FavouritDatabase.getInstance(getApplicationContext());
 
         Intent intent = getIntent();
 
-        movie = intent.getExtras().getParcelable("parcelable_extra");
-        String PhotoPath = movie.getPosterPath();
-        String MovieTitle = movie.getTitle();
-        String MovieReleseData = movie.getReleaseDate();
-        Double voteMoview = movie.getVoteAverage();
-        String plot = movie.getOverview();
-        movieID = movie.id.toString();
+        article = intent.getExtras().getParcelable("parcelable_extra_details");
+//        String PhotoPath = article.getPosterPath();
+        String articleTitle = article.getTitle();
+        String articlePublishedAt = article.getPublishedAt();
+        String articleContent = article.getContent();
+        String articleDescription = article.getDescription();
+        String url=article.getUrl();
+        movieID = article.getAuthor();
 
-        recyclerView = findViewById(R.id.vv);
-        int numberOfColumns = 1;
-        recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
-        recyclerView.setHasFixedSize(true);
-        recyclerViewReviews = findViewById(R.id.RV_Reviews);
-        recyclerViewReviews.setLayoutManager(new LinearLayoutManager(DeatailsActivity.this));
-        recyclerViewReviews.setHasFixedSize(true);
+//        recyclerView = findViewById(R.id.vv);
+//        int numberOfColumns = 1;
+//        recyclerView.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
+//        recyclerView.setHasFixedSize(true);
+//        recyclerViewReviews = findViewById(R.id.RV_Reviews);
+//        recyclerViewReviews.setLayoutManager(new LinearLayoutManager(DeatailsActivity.this));
+//        recyclerViewReviews.setHasFixedSize(true);
 
-        if (mDB.daoFavourite().fetchOneMoviesbyMovieId(MovieTitle) == null) {
+
+     /*   if (mDB.daoFavourite().fetchOneMoviesbyMovieId(MovieTitle) == null) {
+>>>>>>> 2bb08eaa28d3ff9ffe2a18b25a3e088e005094c8
 
             mDB.daoFavourite().insertOnlySingleMovie(movie);
             toggleButton.setChecked(false);
@@ -119,8 +121,8 @@ public class DeatailsActivity extends AppCompatActivity {
             Log.e("Fav", "notExist");
 
         }
-
-        toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+*/
+      /*  toggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked == false) {
@@ -152,30 +154,33 @@ public class DeatailsActivity extends AppCompatActivity {
         toggleButton.setText(null);
         toggleButton.setTextOn(null);
         toggleButton.setTextOff(null);
-
-        getTrailers();
-        RetrofitGetReviews();
+*/
+//        getTrailers();
+//        RetrofitGetReviews();
         Log.e("movieID", movieID + "");
-        trailersAdapter = new TrailersMovieAdapter(this, movieTrailersList);
-        recyclerView.setAdapter(trailersAdapter);
-        movieTrailersList = new ArrayList<>();
-        trailersAdapter.setMovieTrailersListList(movieTrailersList);
+//        trailersAdapter = new TrailersMovieAdapter(this, movieTrailersList);
+//        recyclerView.setAdapter(trailersAdapter);
+//        movieTrailersList = new ArrayList<>();
+//        trailersAdapter.setMovieTrailersListList(movieTrailersList);
+//
+//        reviewsAdapter = new ReviewsAdapter(this, reviewsModelList);
+//        recyclerViewReviews.setAdapter(reviewsAdapter);
+//        reviewsModelList = new ArrayList<>();
+//        reviewsAdapter.setMovieReviewList(reviewsModelList);
 
-        reviewsAdapter = new ReviewsAdapter(this, reviewsModelList);
-        recyclerViewReviews.setAdapter(reviewsAdapter);
-        reviewsModelList = new ArrayList<>();
-        reviewsAdapter.setMovieReviewList(reviewsModelList);
+//        Picasso.get().load(firstURLPart + PhotoPath)
 
-        Picasso.get().load(firstURLPart + PhotoPath)
-                .resize(200, 200)
+        Picasso.get().load(article.getUrlToImage())
+                .resize(800, 600)
                 .centerCrop()
                 .placeholder(R.drawable.scope_placeholder)
                 .into(imageView);
 
-        title.setText(MovieTitle);
-        releaseDate.setText("Release Data : " + MovieReleseData);
-        vote.setText(String.valueOf(voteMoview));
-        details.setText(plot);
+        title.setText(articleTitle);
+        releaseDate.setText("Published at : " + articlePublishedAt);
+//        content.setText(String.valueOf(articleContent));
+        description.setText(articleDescription);
+//        URL.setText(url);
     }
 
 

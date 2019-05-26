@@ -1,10 +1,11 @@
 package com.example.aiaa.movieapp1;
 
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.aiaa.movieapp1.Adapters.Adapter2;
@@ -19,15 +20,27 @@ import com.firebase.jobdispatcher.Job;
 import com.firebase.jobdispatcher.Lifetime;
 import com.firebase.jobdispatcher.RetryStrategy;
 import com.firebase.jobdispatcher.Trigger;
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.ui.AppBarConfiguration;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -35,29 +48,33 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends  FragmentActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
     private Retrofit retrofit;
     public static String BASE_URL = "https://newsapi.org/";
-
     private List<Movie> list;
     private List<Article> articles;
-
-
     private RecyclerView recyclerView;
     private RecyclerView recyclerViewFirst;
     private MovieAdapter movieAdapter;
     private Adapter2 adapter2;
-
     public FavouritDatabase mDB;
+    DrawerNavFragment drawerNavFragment;
 
+
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-// Obtain the FirebaseAnalytics instance.
 
+
+
+       /* getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);*/
+
+// Obtain the FirebaseAnalytics instance.
 //        scheduleJob(this);
         FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(this));
 
@@ -87,8 +104,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         recyclerView = findViewById(R.id.recyclerviewFirst);
-            LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-         recyclerView.setLayoutManager(layoutManager);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
         getRetrofitResponse();
@@ -111,11 +128,11 @@ public class MainActivity extends AppCompatActivity {
                     .addConverterFactory(GsonConverterFactory.create())
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .build();
-            retrofit.create(ApiInterface.class).Data(getString(R.string.country),getString(R.string.category),getString(R.string.API_key)).enqueue(new Callback<KoraList>() {
+            retrofit.create(ApiInterface.class).Data(getString(R.string.country), getString(R.string.category), getString(R.string.API_key)).enqueue(new Callback<KoraList>() {
                 @Override
                 public void onResponse(Call<KoraList> call, Response<KoraList> response) {
                     try {
-                        if (response.code() == 200 || response.isSuccessful()==true) {
+                        if (response.code() == 200 || response.isSuccessful() == true) {
 
                             articles = response.body().getArticles();
                             movieAdapter.setMovieList(articles);
@@ -200,6 +217,7 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     public static void scheduleJob(Context context) {
         //creating new firebase job dispatcher
 
@@ -209,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
 //        dispatcher.mustSchedule(job);
     }
 
-    public static Job createJob(FirebaseJobDispatcher dispatcher){
+    public static Job createJob(FirebaseJobDispatcher dispatcher) {
 
         Job job = dispatcher.newJobBuilder()
                 //persist the task across boots
@@ -247,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
         return newJob;
     }
 
-    public void cancelJob(Context context){
+    public void cancelJob(Context context) {
 
         FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(context));
         //Cancel all the jobs for this package
@@ -257,4 +275,21 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        return false;
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
+    private void showdrawerNavFragment(){
+        drawerNavFragment = new DrawerNavFragment();
+        FragmentManager fragmentManager = this.getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment, drawerNavFragment);
+        fragmentTransaction.commit();
+    }
 }

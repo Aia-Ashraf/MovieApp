@@ -1,9 +1,12 @@
 
 package com.example.aiaa.movieapp1.Models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class Article {
+public class Article implements Parcelable {
 
     @SerializedName("author")
     private String mAuthor;
@@ -86,4 +89,46 @@ public class Article {
         mUrlToImage = urlToImage;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.mAuthor);
+        dest.writeString(this.mContent);
+        dest.writeString(this.mDescription);
+        dest.writeString(this.mPublishedAt);
+//        dest.writeParcelable((Parcelable) this.mSource, flags);
+        dest.writeString(this.mTitle);
+        dest.writeString(this.mUrl);
+        dest.writeString(this.mUrlToImage);
+    }
+
+    public Article() {
+    }
+
+    protected Article(Parcel in) {
+        this.mAuthor = in.readString();
+        this.mContent = in.readString();
+        this.mDescription = in.readString();
+        this.mPublishedAt = in.readString();
+//        this.mSource = in.readParcelable(Source.class.getClassLoader());
+        this.mTitle = in.readString();
+        this.mUrl = in.readString();
+        this.mUrlToImage = in.readString();
+    }
+
+    public static final Parcelable.Creator<Article> CREATOR = new Parcelable.Creator<Article>() {
+        @Override
+        public Article createFromParcel(Parcel source) {
+            return new Article(source);
+        }
+
+        @Override
+        public Article[] newArray(int size) {
+            return new Article[size];
+        }
+    };
 }
