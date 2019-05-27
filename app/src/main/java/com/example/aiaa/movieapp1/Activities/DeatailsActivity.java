@@ -152,7 +152,7 @@ public class DeatailsActivity extends AppCompatActivity {
         toggleButton.setTextOn(null);
         toggleButton.setTextOff(null);
 */
-//        getTrailers();
+        getTrailers();
 //        RetrofitGetReviews();
         Log.e("movieID", movieID + "");
 //        trailersAdapter = new TrailersMovieAdapter(this, movieTrailersList);
