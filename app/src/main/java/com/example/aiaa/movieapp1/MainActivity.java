@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.aiaa.movieapp1.Adapters.Adapter2;
+import com.example.aiaa.movieapp1.Fragments.DrawerNavFragment;
 import com.example.aiaa.movieapp1.Models.Article;
 import com.example.aiaa.movieapp1.Models.KoraList;
 import com.example.aiaa.movieapp1.Models.Movie;
@@ -26,9 +27,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,12 +40,10 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
-public class MainActivity extends  FragmentActivity implements NavigationView.OnNavigationItemSelectedListener {
-
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private Retrofit retrofit;
     public static String BASE_URL = "https://newsapi.org/";
-    private List<Movie> list;
     private List<Article> articles;
     private RecyclerView recyclerView;
     private RecyclerView recyclerViewFirst;
@@ -61,11 +59,8 @@ public class MainActivity extends  FragmentActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
        /* getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);*/
-
 // Obtain the FirebaseAnalytics instance.
 //        scheduleJob(this);
         FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(this));
@@ -91,7 +86,7 @@ public class MainActivity extends  FragmentActivity implements NavigationView.On
         recyclerView.setAdapter(adapter2);
         adapter2.mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-        list = new ArrayList<>();
+        articles = new ArrayList<>();
         adapter2.setMovieList(articles);
 
 
@@ -105,11 +100,10 @@ public class MainActivity extends  FragmentActivity implements NavigationView.On
         recyclerView.setAdapter(firstAdapter);
         firstAdapter.mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-        list = new ArrayList<>();
+        articles = new ArrayList<>();
         firstAdapter.setMovieList(articles);
 
         mDB = FavouritDatabase.getInstance(getApplicationContext());
-
     }
 
     public void getRetrofitResponse() {
@@ -125,7 +119,6 @@ public class MainActivity extends  FragmentActivity implements NavigationView.On
                 public void onResponse(Call<KoraList> call, Response<KoraList> response) {
                     try {
                         if (response.code() == 200 || response.isSuccessful() == true) {
-
                             articles = response.body().getArticles();
                             firstAdapter.setMovieList(articles);
                             adapter2.setMovieList(articles);
@@ -149,53 +142,44 @@ public class MainActivity extends  FragmentActivity implements NavigationView.On
 
     public void getTopRatedRetrofitResponse() {
 
-        retrofit.create(ApiInterface.TopRated.class).getTopRated(getString(R.string.API_key)).enqueue(new Callback<MoviesList>() {
+       /* retrofit.create(ApiInterface.TopRated.class).getTopRated(getString(R.string.API_key)).enqueue(new Callback<MoviesList>() {
             @Override
             public void onResponse(Call<MoviesList> call, Response<MoviesList> response) {
                 try {
                     if (response.code() == 200) {
                         list = response.body().getMovies();
                         firstAdapter.setMovieList(articles);
-
                     } else {
                         Toast.makeText(MainActivity.this, R.string.error, Toast.LENGTH_LONG);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-
                 }
             }
 
             @Override
             public void onFailure(Call<MoviesList> call, Throwable t) {
-
                 Toast.makeText(MainActivity.this, R.string.error, Toast.LENGTH_LONG);
-
             }
-        });
+        });*/
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
-
         menu.findItem(R.id.back).setVisible(false);
-
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-
         if (item.getItemId() == R.id.Top_Rated) {
             //   Collections.sort(list,Movie.Sort_BY_Rate);
             setTitle(R.string.Top_Rated);
             getTopRatedRetrofitResponse();
             firstAdapter = new FirstAdapter(this, articles);
             recyclerView.setAdapter(firstAdapter);
-            list = new ArrayList<>();
+            articles = new ArrayList<>();
             firstAdapter.setMovieList(articles);
 
         } else if (item.getItemId() == R.id.Popularty) {
@@ -203,7 +187,7 @@ public class MainActivity extends  FragmentActivity implements NavigationView.On
             getRetrofitResponse();
             firstAdapter = new FirstAdapter(this, articles);
             recyclerView.setAdapter(firstAdapter);
-            list = new ArrayList();
+            articles = new ArrayList();
             firstAdapter.setMovieList(articles);
 
         }
@@ -212,9 +196,6 @@ public class MainActivity extends  FragmentActivity implements NavigationView.On
 
     public static void scheduleJob(Context context) {
         //creating new firebase job dispatcher
-
-
-
 //        Job job = createJob(dispatcher);
 //        dispatcher.mustSchedule(job);
     }
@@ -264,7 +245,6 @@ public class MainActivity extends  FragmentActivity implements NavigationView.On
         dispatcher.cancelAll();
         // Cancel the job for this tag
         dispatcher.cancel("UniqueTagForYourJob");
-
     }
 
     @Override
@@ -275,13 +255,5 @@ public class MainActivity extends  FragmentActivity implements NavigationView.On
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
-    }
-
-    private void showdrawerNavFragment(){
-        drawerNavFragment = new DrawerNavFragment();
-        FragmentManager fragmentManager = this.getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment, drawerNavFragment);
-        fragmentTransaction.commit();
     }
 }

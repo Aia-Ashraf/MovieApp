@@ -44,7 +44,6 @@ class FirstAdapter extends RecyclerView.Adapter<FirstAdapter.movieViewHolder> {
         boolean shouldAttachToParentImmediately = false;
         View view = inflater.inflate(layoutIdForListItem, parent, shouldAttachToParentImmediately);
         return new movieViewHolder(view);
-
     }
 
     @Override
@@ -75,23 +74,17 @@ class FirstAdapter extends RecyclerView.Adapter<FirstAdapter.movieViewHolder> {
                     Intent intent = new Intent(context, DeatailsActivity.class)
                             .putExtra("parcelable_extra_details", (Parcelable) mPosition);
                     context.startActivity(intent);
-
                 }
-
             }
         });
 
         Log.e("p", position + "");
-
-
-
     }
 
     @Override
     public int getItemCount() {
         if (null == articleList) return 0;
         return articleList.size();
-
     }
 
     public void setMovieList(List<Article> list) {
@@ -105,15 +98,11 @@ class FirstAdapter extends RecyclerView.Adapter<FirstAdapter.movieViewHolder> {
         public TextView titleMain;
         public TextView rate;
 
-
         public movieViewHolder(View itemView) {
             super(itemView);
-            img = (ImageView) itemView.findViewById(R.id.iv_item);
-            titleMain = (TextView) itemView.findViewById(R.id.tv_main_title);
-
+            img =  itemView.findViewById(R.id.iv_item);
+            titleMain = itemView.findViewById(R.id.tv_main_title);
         }
     }
-
-
 }
 

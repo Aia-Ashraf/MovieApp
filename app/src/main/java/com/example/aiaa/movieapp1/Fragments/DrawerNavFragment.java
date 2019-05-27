@@ -1,4 +1,4 @@
-package com.example.aiaa.movieapp1;
+package com.example.aiaa.movieapp1.Fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.aiaa.movieapp1.R;
 import com.google.android.material.navigation.NavigationView;
 
 
