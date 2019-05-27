@@ -13,6 +13,7 @@ import com.example.aiaa.movieapp1.ApiInterface;
 import com.example.aiaa.movieapp1.FavouritDatabase;
 import com.example.aiaa.movieapp1.FirstAdapter;
 import com.example.aiaa.movieapp1.Fragments.DrawerNavFragment;
+import com.example.aiaa.movieapp1.Fragments.NewPostFragment;
 import com.example.aiaa.movieapp1.Models.Article;
 import com.example.aiaa.movieapp1.Models.KoraList;
 import com.example.aiaa.movieapp1.R;
@@ -32,6 +33,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setNavigationViewListner();
+        showEditDialog();
 
        /* getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);*/
@@ -282,4 +285,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
+    private void showEditDialog() {
+        FragmentManager fm = getSupportFragmentManager();
+        NewPostFragment editNameDialog = new NewPostFragment();
+        editNameDialog.show(fm, "fragment_edit_name");
+    }
+
 }
