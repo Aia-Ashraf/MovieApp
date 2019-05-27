@@ -12,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.example.aiaa.movieapp1.Activities.DeatailsActivity;
 import com.example.aiaa.movieapp1.Models.Article;
-import com.example.aiaa.movieapp1.Models.Movie;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.squareup.picasso.Picasso;
 
@@ -22,7 +22,7 @@ import java.util.List;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-class FirstAdapter extends RecyclerView.Adapter<FirstAdapter.movieViewHolder> {
+public class FirstAdapter extends RecyclerView.Adapter<FirstAdapter.movieViewHolder> {
     private List<Article> articleList;
     String firstURLPart = "http://image.tmdb.org/t/p/w185";
     private Context context;

@@ -1,35 +1,32 @@
-package com.example.aiaa.movieapp1;
+package com.example.aiaa.movieapp1.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.example.aiaa.movieapp1.ApiInterface;
+import com.example.aiaa.movieapp1.FavouritDatabase;
 import com.example.aiaa.movieapp1.Models.Article;
-import com.example.aiaa.movieapp1.Models.Movie;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
+import com.example.aiaa.movieapp1.MovieTrailer;
+import com.example.aiaa.movieapp1.MovieTrailerList;
+import com.example.aiaa.movieapp1.R;
+import com.example.aiaa.movieapp1.Reviews;
+import com.example.aiaa.movieapp1.ReviewsAdapter;
+import com.example.aiaa.movieapp1.ReviewsModel;
+import com.example.aiaa.movieapp1.TrailersMovieAdapter;
+import com.example.aiaa.movieapp1.favViewModel;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import retrofit2.Call;
 import retrofit2.Callback;

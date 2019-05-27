@@ -10,7 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
 
-import com.google.firebase.messaging.FirebaseMessaging;
+import com.example.aiaa.movieapp1.Activities.MainActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 
 import androidx.core.app.NotificationCompat;

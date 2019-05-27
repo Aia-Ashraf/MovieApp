@@ -2,7 +2,7 @@ package com.example.aiaa.movieapp1;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-class MovieTrailer {
+public class MovieTrailer {
 
 
     @SerializedName("id")

@@ -1,13 +1,9 @@
 package com.example.aiaa.movieapp1.Fragments;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -15,18 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.aiaa.movieapp1.R;
-import com.google.android.material.navigation.NavigationView;
-
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link DrawerNavFragment.OnFragmentInteractionListener} interface
+ * {@link newPostFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link DrawerNavFragment#newInstance} factory method to
+ * Use the {@link newPostFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DrawerNavFragment extends Fragment {
+public class newPostFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -38,7 +32,7 @@ public class DrawerNavFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public DrawerNavFragment() {
+    public newPostFragment() {
         // Required empty public constructor
     }
 
@@ -48,11 +42,11 @@ public class DrawerNavFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment DrawerNavFragment.
+     * @return A new instance of fragment newPostFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static DrawerNavFragment newInstance(String param1, String param2) {
-        DrawerNavFragment fragment = new DrawerNavFragment();
+    public static newPostFragment newInstance(String param1, String param2) {
+        newPostFragment fragment = new newPostFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -60,28 +54,12 @@ public class DrawerNavFragment extends Fragment {
         return fragment;
     }
 
-
-
-    @SuppressLint("ResourceType")
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-
-
-            NavigationView navigationView = (NavigationView)getView().findViewById(R.id.nav_view);
-            navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) getActivity());
-
-            Toolbar toolbar = getView().findViewById(R.id.toolbar_main);
-//        setSupportActionBar(toolbar);
-
-            DrawerLayout drawer = getView().findViewById(R.id.drawer_layout);
-
-            ActionBarDrawerToggle toggle;
-            toggle = new ActionBarDrawerToggle(getActivity(), drawer, toolbar, 1, 2);
-            drawer.addDrawerListener(toggle);
         }
     }
 
@@ -89,11 +67,7 @@ public class DrawerNavFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_drawer_nav, container, false);
-
-
-
-
+        return inflater.inflate(R.layout.fragment_new_post, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -109,7 +83,8 @@ public class DrawerNavFragment extends Fragment {
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
         } else {
-
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
         }
     }
 
@@ -130,7 +105,7 @@ public class DrawerNavFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
-
 }

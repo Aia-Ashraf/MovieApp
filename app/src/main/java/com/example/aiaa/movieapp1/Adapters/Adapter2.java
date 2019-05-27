@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.aiaa.movieapp1.DeatailsActivity;
+import com.example.aiaa.movieapp1.Activities.DeatailsActivity;
 import com.example.aiaa.movieapp1.Models.Article;
 import com.example.aiaa.movieapp1.R;
 import com.google.firebase.analytics.FirebaseAnalytics;

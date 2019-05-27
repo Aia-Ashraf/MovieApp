@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.example.aiaa.movieapp1.Activities.DeatailsActivity;
 import com.example.aiaa.movieapp1.Models.Movie;
 
 public class favViewModel extends AndroidViewModel {

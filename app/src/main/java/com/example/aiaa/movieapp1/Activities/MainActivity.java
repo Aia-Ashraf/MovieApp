@@ -1,18 +1,22 @@
-package com.example.aiaa.movieapp1;
+package com.example.aiaa.movieapp1.Activities;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.aiaa.movieapp1.Adapters.Adapter2;
+import com.example.aiaa.movieapp1.ApiInterface;
+import com.example.aiaa.movieapp1.FavouritDatabase;
+import com.example.aiaa.movieapp1.FirstAdapter;
 import com.example.aiaa.movieapp1.Fragments.DrawerNavFragment;
 import com.example.aiaa.movieapp1.Models.Article;
 import com.example.aiaa.movieapp1.Models.KoraList;
-import com.example.aiaa.movieapp1.Models.Movie;
-import com.example.aiaa.movieapp1.Models.MoviesList;
+import com.example.aiaa.movieapp1.R;
+import com.example.aiaa.movieapp1.ScheduledJobService;
 import com.firebase.jobdispatcher.Constraint;
 import com.firebase.jobdispatcher.FirebaseJobDispatcher;
 import com.firebase.jobdispatcher.GooglePlayDriver;
@@ -28,7 +32,6 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -58,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setNavigationViewListner();
 
        /* getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);*/
@@ -122,9 +126,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             articles = response.body().getArticles();
                             firstAdapter.setMovieList(articles);
                             adapter2.setMovieList(articles);
-
                         } else {
-
                             Toast.makeText(MainActivity.this, R.string.error, Toast.LENGTH_LONG);
                         }
                     } catch (Exception e) {
@@ -141,7 +143,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void getTopRatedRetrofitResponse() {
-
        /* retrofit.create(ApiInterface.TopRated.class).getTopRated(getString(R.string.API_key)).enqueue(new Callback<MoviesList>() {
             @Override
             public void onResponse(Call<MoviesList> call, Response<MoviesList> response) {
@@ -156,7 +157,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     e.printStackTrace();
                 }
             }
-
             @Override
             public void onFailure(Call<MoviesList> call, Throwable t) {
                 Toast.makeText(MainActivity.this, R.string.error, Toast.LENGTH_LONG);
@@ -247,13 +247,39 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dispatcher.cancel("UniqueTagForYourJob");
     }
 
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        return false;
+        int id = menuItem.getItemId();
+        switch (id) {
+            case R.id.home:
+                Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, MainActivity.class);
+                getApplicationContext().startActivity(intent);
+                break;
+            case R.id.profile:
+                Intent i = new Intent(this, ProfileActivity.class);
+                getApplicationContext().startActivity(i);
+                break;
+            case R.id.settings:
+                Toast.makeText(getApplicationContext(), "Setting", Toast.LENGTH_SHORT).show();
+                Intent settingIntent = new Intent(this, SettingActivity.class);
+                getApplicationContext().startActivity(settingIntent);
+                break;
+            case R.id.log_out:
+                Toast.makeText(getApplicationContext(), "Log Out", Toast.LENGTH_SHORT).show();
+                finish();
+        }
+        return true;
     }
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
+    }
+
+    private void setNavigationViewListner() {
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 }
