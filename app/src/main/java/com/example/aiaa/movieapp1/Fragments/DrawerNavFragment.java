@@ -71,17 +71,24 @@ public class DrawerNavFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
 
 
-            NavigationView navigationView = (NavigationView)getView().findViewById(R.id.nav_view);
-            navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) getActivity());
+
+
+//            NavigationView navigationView = (NavigationView)getView().findViewById(R.id.nav_view);
+//            navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) getActivity());
+
+            //TODO navigationView
 
             Toolbar toolbar = getView().findViewById(R.id.toolbar_main);
 //        setSupportActionBar(toolbar);
 
-            DrawerLayout drawer = getView().findViewById(R.id.drawer_layout);
+//            DrawerLayout drawer = getView().findViewById(R.id.drawer_layout);
+//
+//            ActionBarDrawerToggle toggle;
+//            toggle = new ActionBarDrawerToggle(getActivity(), drawer, toolbar, 1, 2);
+//            drawer.addDrawerListener(toggle);
 
-            ActionBarDrawerToggle toggle;
-            toggle = new ActionBarDrawerToggle(getActivity(), drawer, toolbar, 1, 2);
-            drawer.addDrawerListener(toggle);
+            //TODO navigationView
+
         }
     }
 

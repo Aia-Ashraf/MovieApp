@@ -4,8 +4,15 @@ package com.example.aiaa.movieapp1.Models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+@Entity(tableName = "ArticleTable")
 public class Article implements Parcelable {
 
     @SerializedName("author")
@@ -16,9 +23,14 @@ public class Article implements Parcelable {
     private String mDescription;
     @SerializedName("publishedAt")
     private String mPublishedAt;
-    @SerializedName("source")
-    private Source mSource;
+//    @SerializedName("source")
+//    private Source mSource;
+
     @SerializedName("title")
+    @Expose
+    @PrimaryKey
+    @NonNull
+    @ColumnInfo(name = "title")
     private String mTitle;
     @SerializedName("url")
     private String mUrl;
@@ -57,13 +69,13 @@ public class Article implements Parcelable {
         mPublishedAt = publishedAt;
     }
 
-    public Source getSource() {
-        return mSource;
-    }
-
-    public void setSource(Source source) {
-        mSource = source;
-    }
+//    public Source getSource() {
+//        return mSource;
+//    }
+//
+//    public void setSource(Source source) {
+//        mSource = source;
+//    }
 
     public String getTitle() {
         return mTitle;

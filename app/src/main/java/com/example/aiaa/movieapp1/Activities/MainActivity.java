@@ -63,11 +63,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setNavigationViewListner();
-        showEditDialog();
+//        setNavigationViewListner();
+//        showEditDialog();
+        //TODO showEditDialog ,setNavigationViewListner
 
        /* getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);*/
+        getSupportActionBar().setHomeButtfonEnabled(true);*/
 // Obtain the FirebaseAnalytics instance.
 //        scheduleJob(this);
         FirebaseJobDispatcher dispatcher = new FirebaseJobDispatcher(new GooglePlayDriver(this));
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-        getRetrofitResponse();
+        getArticlesResponse();
         adapter2 = new Adapter2(this, articles);
         recyclerView.setAdapter(adapter2);
         adapter2.mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
 
-        getRetrofitResponse();
+        getArticlesResponse();
         firstAdapter = new FirstAdapter(this, articles);
         recyclerView.setAdapter(firstAdapter);
         firstAdapter.mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mDB = FavouritDatabase.getInstance(getApplicationContext());
     }
 
-    public void getRetrofitResponse() {
+    public void getArticlesResponse() {
 
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
@@ -187,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (item.getItemId() == R.id.Popularty) {
             setTitle(R.string.app_name);
-            getRetrofitResponse();
+            getArticlesResponse();
             firstAdapter = new FirstAdapter(this, articles);
             recyclerView.setAdapter(firstAdapter);
             articles = new ArrayList();
@@ -281,10 +282,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    private void setNavigationViewListner() {
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-    }
+//    private void setNavigationViewListner() {
+//        NavigationView navigationView = findViewById(R.id.nav_view);
+//        navigationView.setNavigationItemSelectedListener(this);
+//    }
+// TODO setNavigationViewListner
 
     private void showEditDialog() {
         FragmentManager fm = getSupportFragmentManager();

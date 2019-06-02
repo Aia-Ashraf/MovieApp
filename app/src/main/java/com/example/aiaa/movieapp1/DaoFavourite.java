@@ -10,39 +10,40 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.example.aiaa.movieapp1.Models.Article;
 import com.example.aiaa.movieapp1.Models.Movie;
 
 @Dao
 public interface DaoFavourite {
     @Insert
             (onConflict = OnConflictStrategy.REPLACE)
-    void insertOnlySingleMovie(Movie movie);
+    void insertOnlySingleMovie(Article article);
 
     @Insert
             (onConflict = OnConflictStrategy.REPLACE)
-    void insertFave(Movie movie);
+    void insertFave(Article article);
 
     @Insert
-    void insertMultipleMovies(List<Movie> moviesList);
+    void insertMultipleMovies(List<Article> articleList);
 
-    @Query("SELECT * FROM Movie WHERE title = :title")
-    Movie fetchOneMoviesbyMovieId(String title);
+//    @Query("SELECT * FROM ArticleTable WHERE title = :title")
+//    Movie fetchOneMoviesbyMovieId(String title);
 
-    @Query("SELECT * FROM Movie ")
-    LiveData<List<Movie>> fetchAllMovies();
+    @Query("SELECT * FROM ArticleTable ")
+    LiveData<List<Article>> fetchAllArticles();
 
     @Update
             (onConflict = OnConflictStrategy.REPLACE)
-    void updateMovie(Movie movie);
+    void updateMovie(Article article);
 
     @Delete
         // ("DELETE FROM Movie")
-    void deleteMovie(Movie movie);
+    void deleteMovie(Article article);
 
-    @Query("SELECT COUNT(ID) FROM Movie")
-    int getCount();
+//    @Query("SELECT COUNT(ID) FROM ArticleTable")
+//    int getCount();
 
     @Insert
-    void insert(Movie movie);
+    void insert(Article article);
 
 }

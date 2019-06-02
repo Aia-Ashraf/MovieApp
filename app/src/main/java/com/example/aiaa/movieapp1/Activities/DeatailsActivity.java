@@ -152,7 +152,7 @@ public class DeatailsActivity extends AppCompatActivity {
         toggleButton.setTextOn(null);
         toggleButton.setTextOff(null);
 */
-        getTrailers();
+//        getTrailers();
 //        RetrofitGetReviews();
         Log.e("movieID", movieID + "");
 //        trailersAdapter = new TrailersMovieAdapter(this, movieTrailersList);
@@ -201,37 +201,37 @@ public class DeatailsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void getTrailers() {
-
-        retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .build();
-        retrofit.create(ApiInterface.Movietrailers.class).getMovieTrailers(movieID, getString(R.string.API_key)).enqueue(new Callback<MovieTrailerList>() {
-            @Override
-            public void onResponse(Call<MovieTrailerList> call, Response<MovieTrailerList> response) {
-                try {
-                    if (response.code() == 200) {
-                        MovieTrailerList movieResult = response.body();
-                        movieTrailersList = movieResult.getMovieTrailers();
-                        trailersAdapter.setMovieTrailersListList(movieTrailersList);
-
-                    } else {
-                        Toast.makeText(DeatailsActivity.this, R.string.error, Toast.LENGTH_LONG).show();
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Toast.makeText(DeatailsActivity.this, R.string.error, Toast.LENGTH_LONG).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<MovieTrailerList> call, Throwable t) {
-                Toast.makeText(DeatailsActivity.this, R.string.error, Toast.LENGTH_LONG).show();
-            }
-        });
-    }
+//    public void getTrailers() {
+//
+//        retrofit = new Retrofit.Builder()
+//                .baseUrl(BASE_URL)
+//                .addConverterFactory(GsonConverterFactory.create())
+//                .addConverterFactory(ScalarsConverterFactory.create())
+//                .build();
+//        retrofit.create(ApiInterface.Movietrailers.class).getMovieTrailers(movieID, getString(R.string.API_key)).enqueue(new Callback<MovieTrailerList>() {
+//            @Override
+//            public void onResponse(Call<MovieTrailerList> call, Response<MovieTrailerList> response) {
+//                try {
+//                    if (response.code() == 200) {
+//                        MovieTrailerList movieResult = response.body();
+//                        movieTrailersList = movieResult.getMovieTrailers();
+//                        trailersAdapter.setMovieTrailersListList(movieTrailersList);
+//
+//                    } else {
+//                        Toast.makeText(DeatailsActivity.this, R.string.error, Toast.LENGTH_LONG).show();
+//                    }
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                    Toast.makeText(DeatailsActivity.this, R.string.error, Toast.LENGTH_LONG).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<MovieTrailerList> call, Throwable t) {
+//                Toast.makeText(DeatailsActivity.this, R.string.error, Toast.LENGTH_LONG).show();
+//            }
+//        });
+//    }
 
     public void RetrofitGetReviews() {
         retrofit.create(ApiInterface.MovieReviewAPI.class).getMovieReview(movieID, getString(R.string.API_key)).enqueue(new Callback<Reviews>() {

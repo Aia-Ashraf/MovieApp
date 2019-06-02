@@ -76,19 +76,6 @@ public class VideosActivity extends AppCompatActivity {
     }
     public static void main(String[] args) throws IOException {
 
-        YouTube youtube = getYouTubeService();
-        try {
-            HashMap<String, String> parameters = new HashMap<>();
-            parameters.put("part", "snippet,contentDetails,statistics");
-            parameters.put("id", "Ks-_Mh1QhMc");
 
-            YouTube.Videos.List videosListByIdRequest = youtube.videos().list(parameters.get("part").toString());
-            if (parameters.containsKey("id") && parameters.get("id") != "") {
-                videosListByIdRequest.setId(parameters.get("id").toString());
-            }
-
-            VideoListResponse response = videosListByIdRequest.execute();
-            System.out.println(response);
-        }
     }
 }

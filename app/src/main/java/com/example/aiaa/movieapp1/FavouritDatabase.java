@@ -12,13 +12,14 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.aiaa.movieapp1.Models.Article;
 import com.example.aiaa.movieapp1.Models.Movie;
 
 
-@Database(entities = {Movie.class}, version = 1, exportSchema = false)
+@Database(entities = {Article.class}, version = 1, exportSchema = false)
 public abstract class FavouritDatabase extends RoomDatabase {
 
-    private static final String DATABASE_NAME = "movies_db";
+    private static final String DATABASE_NAME = "articles_db";
     private static final Object Lock = new Object();
 
     private static FavouritDatabase favouritDatabase;
@@ -55,12 +56,11 @@ public abstract class FavouritDatabase extends RoomDatabase {
 
         @Override
         protected Void doInBackground(final Void... params) {
-          //  mDao.deleteMovie();
-          //  Movie movie = new Movie("Hello");
-           // mDao.f(word);
-           // word = new Word("World");
-           // mDao.insert(word);
-
+//            mDao.deleteMovie();
+//            Movie movie = new Movie("Hello");
+//            mDao.f(word);
+//            word = new Word("World");
+//            mDao.insert(word);
 
             Log.e("Aia","Databaseeeeeeeeeeeeeeeeeeeeeeeeeee");
             return null;
